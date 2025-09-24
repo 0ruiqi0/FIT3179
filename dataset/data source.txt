@@ -1,6 +1,0 @@
-data links:
-1. Malaysia_Salary_Data
-   https://www.kaggle.com/datasets/bred54/malaysia-salary-data
-2. Household Income and Expenditure
-   https://data.gov.my/data-catalogue/hies_state
-
