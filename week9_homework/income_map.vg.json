@@ -10,7 +10,7 @@
 ,
 
   "data": {
-    "url": "dataset/mys_adm1.topo.json",
+    "url": "https://raw.githubusercontent.com/0ruiqi0/FIT3179/refs/heads/main/week9_homework/dataset/mys_adm1.topo.json",
     "format": { "type": "topojson", "feature": "adm1" }   
   },
 
@@ -18,7 +18,7 @@
     {
       "lookup": "properties.shapeName",                   
       "from": {
-        "data": { "url": "dataset/hies_state.csv", "format": { "type": "csv" } },
+        "data": { "url": "https://raw.githubusercontent.com/0ruiqi0/FIT3179/refs/heads/main/week9_homework/dataset/hies_state.csv", "format": { "type": "csv" } },
         "key": "state",
         "fields": ["state","income_mean","income_median","gini","poverty"]
       }
