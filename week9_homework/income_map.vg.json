@@ -18,7 +18,7 @@
     {
       "lookup": "properties.shapeName",                   
       "from": {
-        "data": { "url": "dataset/hies_state.csv", "format": { "type": "csv" } },
+        "data": { "url": "week9_homework/dataset/hies_state.csv", "format": { "type": "csv" } },
         "key": "state",
         "fields": ["state","income_mean","income_median","gini","poverty"]
       }
