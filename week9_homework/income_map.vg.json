@@ -10,7 +10,7 @@
 ,
 
   "data": {
-    "url": "dataset/mys_adm1.topo.json",
+    "url": "week9_homework/dataset/mys_adm1.topo.json",
     "format": { "type": "topojson", "feature": "adm1" }   
   },
 
