@@ -1,0 +1,85 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 680,
+  "height": 420,
+  "title": "Individual Salaries vs Experience (Filter by Education)",
+  "data": { "url": "./Malaysia_Salary_Data_clean.csv" },
+
+  "params": [
+    {
+      "name": "edu_select",
+      "bind": {
+        "input": "select",
+        "options": [null, "Bachelor's", "Bachelor's Degree", "Master's", "Master's Degree", "PhD"],
+        "labels": ["Show All", "Bachelor's", "Bachelor's Degree", "Master's", "Master's Degree", "PhD"],
+        "name": "Education: "
+      }
+    }
+  ],
+
+  "transform": [
+    { "filter": "edu_select == null || datum['Education Level'] == edu_select" }
+  ],
+
+  "encoding": {
+    "x": {
+      "field": "Years of Experience",
+      "type": "quantitative",
+      "title": "Years of Experience",
+      "axis": {"grid": true}
+    },
+    "y": {
+      "field": "Salary",
+      "type": "quantitative",
+      "title": "Monthly Salary (MYR)",
+      "axis": {"format": ",", "grid": true}
+    }
+  },
+
+  "layer": [
+    {
+      "mark": {"type": "circle", "tooltip": true, "opacity": 0.65},
+      "encoding": {
+        "color": {"field": "Gender", "type": "nominal", "title": "Gender"},
+        "size": {"field": "Age", "type": "quantitative", "title": "Age", "scale": {"range": [20, 400]}},
+        "tooltip": [
+          {"field": "Gender", "type": "nominal"},
+          {"field": "Education Level", "type": "nominal", "title": "Education"},
+          {"field": "Job Title", "type": "nominal"},
+          {"field": "Years of Experience", "type": "quantitative", "title": "Experience (yrs)"},
+          {"field": "Age", "type": "quantitative"},
+          {"field": "Salary", "type": "quantitative", "format": ",", "title": "Salary (MYR)"}
+        ]
+      }
+    },
+
+    {
+      "mark": {"type": "text", "align": "left", "dx": 6, "dy": -6, "fontSize": 10},
+      "encoding": {
+        "text": {"field": "Job Title", "type": "nominal"},
+        "opacity": {
+          "condition": {"test": "datum.TopEarnerFlag == 1", "value": 1},
+          "value": 0
+        }
+      }
+    },
+
+    {
+      "data": { "values": [ { "avgSalary": 7676.40 } ] },
+      "mark": {"type": "rule", "strokeDash": [6,4], "opacity": 0.8},
+      "encoding": {
+        "y": {"field": "avgSalary", "type": "quantitative"},
+        "color": {"value": "#555"}
+      }
+    },
+    {
+      "data": { "values": [ { "avgSalary": 7676.40 } ] },
+      "mark": {"type": "text", "align": "right", "dx": -6, "dy": -6, "fontSize": 11, "fontStyle": "italic"},
+      "encoding": {
+        "y": {"field": "avgSalary", "type": "quantitative"},
+        "x": {"value": 680},
+        "text": {"value": "National average salary = 7,676 MYR"}
+      }
+    }
+  ]
+}
