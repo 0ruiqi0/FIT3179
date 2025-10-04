@@ -3,7 +3,7 @@
   "width": 680,
   "height": 420,
   "title": "Individual Salaries vs Experience (Filter by Education)",
-  "data": { "url": "./Malaysia_Salary_Data_clean.csv" },
+  "data": { "url": "https://raw.githubusercontent.com/0ruiqi0/FIT3179/refs/heads/main/week10_homework/data/Malaysia_Salary_Data_clean.csv" },
 
   "params": [
     {
