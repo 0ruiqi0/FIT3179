@@ -2,7 +2,11 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 680,
   "height": 420,
-  "title": "Individual Salaries vs Experience (Filter by Education)",
+  "title": {
+    "text": "Individual Salaries vs Experience (Filter by Education)",
+    "fontSize": 22,
+    "fontWeight": "bold"},
+
   "data": { "url": "https://raw.githubusercontent.com/0ruiqi0/FIT3179/refs/heads/main/week10_homework/data/Malaysia_Salary_Data_clean.csv" },
 
   "params": [
@@ -12,7 +16,7 @@
         "input": "select",
         "options": [null, "Bachelor's", "Bachelor's Degree", "Master's", "Master's Degree", "PhD"],
         "labels": ["Show All", "Bachelor's", "Bachelor's Degree", "Master's", "Master's Degree", "PhD"],
-        "name": "Education: "
+        "name": "Education Level: "
       }
     }
   ],
@@ -32,19 +36,26 @@
       "field": "Salary",
       "type": "quantitative",
       "title": "Monthly Salary (MYR)",
-      "axis": {"format": ",", "grid": true}
+      "axis": { "format": ",.2f", "grid": true, "tickCount": 8 },
+      "scale": { "domain": [0, 15000] }  
     }
   },
 
   "layer": [
     {
-      "mark": {"type": "circle", "tooltip": true, "opacity": 0.65},
+      "mark": {"type": "circle", "tooltip": true, "opacity": 0.68},
       "encoding": {
         "color": {"field": "Gender", "type": "nominal", "title": "Gender"},
-        "size": {"field": "Age", "type": "quantitative", "title": "Age", "scale": {"range": [20, 400]}},
+        "size": {
+          "field": "Age",
+          "type": "quantitative",
+          "title": "Age",
+          "scale": { "range": [20, 420], "domain": [20, 60] },  
+          "legend": { "values": [20, 30, 40, 50, 60] }          
+        },
         "tooltip": [
           {"field": "Gender", "type": "nominal"},
-          {"field": "Education Level", "type": "nominal", "title": "Education"},
+          {"field": "Education Level", "type": "nominal", "title": "Education Level"},
           {"field": "Job Title", "type": "nominal"},
           {"field": "Years of Experience", "type": "quantitative", "title": "Experience (yrs)"},
           {"field": "Age", "type": "quantitative"},
@@ -54,32 +65,34 @@
     },
 
     {
-      "mark": {"type": "text", "align": "left", "dx": 6, "dy": -6, "fontSize": 10},
-      "encoding": {
-        "text": {"field": "Job Title", "type": "nominal"},
-        "opacity": {
-          "condition": {"test": "datum.TopEarnerFlag == 1", "value": 1},
-          "value": 0
-        }
-      }
-    },
-
-    {
       "data": { "values": [ { "avgSalary": 7676.40 } ] },
-      "mark": {"type": "rule", "strokeDash": [6,4], "opacity": 0.8},
+      "mark": { "type": "rule", "strokeDash": [6,4], "opacity": 0.85 },
       "encoding": {
-        "y": {"field": "avgSalary", "type": "quantitative"},
-        "color": {"value": "#555"}
+        "y": { "field": "avgSalary", "type": "quantitative" },
+        "color": { "value": "#555" }
       }
     },
     {
       "data": { "values": [ { "avgSalary": 7676.40 } ] },
-      "mark": {"type": "text", "align": "right", "dx": -6, "dy": -6, "fontSize": 11, "fontStyle": "italic"},
+      "mark": { "type": "text", "align": "right", "dx": -6, "dy": -6, "fontSize": 11, "fontStyle": "italic" },
       "encoding": {
-        "y": {"field": "avgSalary", "type": "quantitative"},
-        "x": {"value": 680},
-        "text": {"value": "National average salary = 7,676 MYR"}
+        "y": { "field": "avgSalary", "type": "quantitative" },
+        "x": { "value": 680 },
+        "text": { "value": "National average salary is 7,676 MYR" }
       }
     }
-  ]
+  ],
+
+  "config": {
+    "legend": {
+      "orient": "right",
+      "labelFontSize": 14,
+      "titleFontSize": 16
+    },
+    "axis": {
+      "labelFontSize": 14,
+      "titleFontSize": 16
+    },
+    "view": { "stroke": null }
+  }
 }
