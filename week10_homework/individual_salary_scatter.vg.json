@@ -73,13 +73,20 @@
       }
     },
     {
-      "data": { "values": [ { "avgSalary": 7676.40 } ] },
-      "mark": { "type": "text", "align": "right", "dx": -6, "dy": -6, "fontSize": 11, "fontStyle": "italic" },
-      "encoding": {
+    "data": { "values": [ { "avgSalary": 7676.40 } ] },
+    "mark": { 
+        "type": "text", 
+        "align": "right", 
+        "dx": -6, 
+        "dy": -6, 
+        "fontStyle": "italic",
+        "fontSize": 16
+    },
+    "encoding": {
         "y": { "field": "avgSalary", "type": "quantitative" },
         "x": { "value": 680 },
         "text": { "value": "National average salary is 7,676 MYR" }
-      }
+    }
     }
   ],
 
